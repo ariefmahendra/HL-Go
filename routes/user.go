@@ -17,6 +17,12 @@ func UserRoute(app *fiber.App) {
 
 	// DELETE /users/:id
 	app.Delete("/users/:id", deleteUser)
+
+	// Login
+	app.Post("/auth/login", login)
+
+	// register
+	app.Post("/auth/register", register)
 }
 
 func getAllUsers(c *fiber.Ctx) error {
@@ -33,4 +39,12 @@ func createUser(c *fiber.Ctx) error {
 
 func deleteUser(c *fiber.Ctx) error {
 	return repositories.DeleteUser(c)
+}
+
+func login(c *fiber.Ctx) error {
+	return repositories.Login(c)
+}
+
+func register(c *fiber.Ctx) error {
+	return repositories.Register(c)
 }
